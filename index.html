@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="河合塾の模試結果PDFリンクを、公式公開前に確認するためのリンク生成サイトです。">
+  <meta name="theme-color" content="#155b91">
+  <title>河合模試 先行閲覧</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="brand">KAWAI JUKU MOCK EXAM RESULTS</div>
+      <h1>河合模試 先行閲覧</h1>
+      <p class="lead">公式公開前に確認できる、河合塾の模試結果PDFへのリンクを生成します。</p>
+      <p class="notice">PDFリンクは正式公開日の前日に登録されるため、公開前でも結果を確認できる場合があります。</p>
+    </header>
+
+    <section class="login-notice" aria-label="ログインについて">
+      <span class="notice-mark" aria-hidden="true">!</span>
+      <p><strong>事前に河合塾ポータルへログインしてください。</strong><br>ログインしていない場合、PDFを閲覧できません。</p>
+    </section>
+
+    <section class="supported" aria-labelledby="supported-title">
+      <h2 id="supported-title">対応模試</h2>
+      <ul>
+        <li>全統共通テスト模試</li>
+        <li>全統記述模試</li>
+        <li>全統高2模試</li>
+        <li>全統記述高2模試</li>
+        <li>全統共通テスト高2模試</li>
+        <li>全統高1模試</li>
+      </ul>
+    </section>
+
+    <section class="generator" aria-labelledby="generator-title">
+      <h2 id="generator-title">模試を選んでリンクを表示</h2>
+      <form id="generator-form">
+        <div class="field-grid">
+          <div class="field">
+            <label for="year">年度</label>
+            <div class="with-unit">
+              <input id="year" name="year" type="number" inputmode="numeric"
+                     min="2000" max="2099" step="1" placeholder="例：2026" required>
+              <span>年度</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="grade">学年</label>
+            <select id="grade" name="grade" required>
+              <option value="">選択してください</option>
+              <option value="1">高校1年</option>
+              <option value="2">高校2年</option>
+              <option value="3">高校3年・高卒</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="exam">模試の種類</label>
+            <select id="exam" name="exam" required disabled>
+              <option value="">先に学年を選択してください</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="round">実施回</label>
+            <div class="with-unit">
+              <input id="round" name="round" type="number" inputmode="numeric"
+                     min="1" max="9" step="1" placeholder="例：1" required>
+              <span>回</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="generate-button" disabled>リンクを表示</button>
+        <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="results" id="results" aria-labelledby="results-title" hidden>
+      <h2 id="results-title">結果を確認</h2>
+      <p id="selected-summary" class="selected-summary"></p>
+      <div class="result-links" id="link-list"></div>
+    </section>
+    <footer class="site-footer">
+      <p>本サイトは管理者の利用環境でのみ動作確認を行っているため、環境によっては閲覧できない場合があります。</p>
+    </footer>
+  </main>
+</body>
+</html>
